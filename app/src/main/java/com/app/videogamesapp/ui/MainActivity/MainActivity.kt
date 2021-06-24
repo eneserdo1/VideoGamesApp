@@ -1,4 +1,4 @@
-package com.app.videogamesapp.ui
+package com.app.videogamesapp.ui.MainActivity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -17,8 +17,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         initViewPager()
-
-
     }
 
     private fun initViewPager() {

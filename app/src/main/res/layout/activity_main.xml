@@ -8,7 +8,6 @@
     android:orientation="vertical">
 
 
-
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
@@ -20,12 +19,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="?actionBarSize"
-        android:background="@color/white"
+        android:background="#6E6C6C"
         android:layout_alignParentBottom="true"
+        app:tabIconTint="@color/white"
         app:tabGravity="fill"
         app:tabMode="fixed"
-        app:tabSelectedTextColor="@color/black"
-        app:tabTextColor="@color/black" />
+        />
 
 
 </RelativeLayout>

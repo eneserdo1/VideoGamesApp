@@ -2,12 +2,10 @@ package com.app.videogamesapp.ui.Detail
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.app.videogamesapp.data.GetDetail.DetailService
+import androidx.lifecycle.viewModelScope
+import com.app.videogamesapp.data.Repository.Repository
 import com.app.videogamesapp.model.GameDetailBase
-import com.app.videogamesapp.model.Results
 import com.application.wgo.Sqlite.GameDao
 import com.application.wgo.Sqlite.GameRoomDatabase
 import kotlinx.coroutines.GlobalScope
@@ -17,6 +15,13 @@ class DetailViewModel(application: Application):AndroidViewModel(application) {
     var mutableDetailData:MutableLiveData<GameDetailBase> = MutableLiveData()
     var progressbarState:MutableLiveData<Boolean> = MutableLiveData()
     var gameDao : GameDao?=null
+    val service = Repository()
+
+
+    init {
+        val gameDb = GameRoomDatabase.getDatabase(application)
+        gameDao = gameDb!!.gameDao()
+    }
 
 
     fun fetchData(id:String){
@@ -25,7 +30,6 @@ class DetailViewModel(application: Application):AndroidViewModel(application) {
     }
 
     private fun getDetail(id: String) {
-        val service = DetailService()
         service.getDetail(id){response->
             if (response != null){
                 mutableDetailData.value = response
@@ -33,19 +37,13 @@ class DetailViewModel(application: Application):AndroidViewModel(application) {
             }else{
                 mutableDetailData.value = null
                 progressbarState.value = false
-
             }
         }
     }
 
-    init {
-        val gameDb = GameRoomDatabase.getDatabase(application)
-        gameDao = gameDb!!.gameDao()
-
-    }
 
     fun insert(game: GameDetailBase){
-        GlobalScope.async {
+        viewModelScope.async {
             gameDao!!.insert(game)
         }
     }

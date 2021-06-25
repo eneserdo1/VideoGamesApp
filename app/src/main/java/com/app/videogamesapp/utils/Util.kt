@@ -20,7 +20,6 @@ class SafeClickListener(
 }
 
 fun View.clickListener(onSafeClick: (View) -> Unit) {
-
     val safeClickListener = SafeClickListener {
         onSafeClick(it)
     }

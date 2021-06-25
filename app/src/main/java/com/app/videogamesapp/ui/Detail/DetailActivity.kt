@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import coil.load
+import com.app.videogamesapp.R
 import com.app.videogamesapp.databinding.ActivityDetailBinding
 import com.app.videogamesapp.model.GameDetailBase
 import com.app.videogamesapp.model.Results
@@ -29,7 +30,6 @@ class DetailActivity : AppCompatActivity() {
         observeData()
         buttonsListener()
 
-
     }
 
     private fun buttonsListener() {
@@ -38,7 +38,6 @@ class DetailActivity : AppCompatActivity() {
             detailResult?.let {
                 viewModel.insert(it)
             }
-
         }
     }
 
@@ -53,8 +52,7 @@ class DetailActivity : AppCompatActivity() {
                 detailResult = response
 
             }else{
-                Toast.makeText(this,"Bir Hata Oluştu",Toast.LENGTH_LONG).show()
-
+                Toast.makeText(this,getString(R.string.error_message),Toast.LENGTH_LONG).show()
             }
         })
 

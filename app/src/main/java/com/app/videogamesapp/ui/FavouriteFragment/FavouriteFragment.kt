@@ -43,9 +43,7 @@ class FavouriteFragment : Fragment() {
     private fun initRecyclerview() {
         adapter = FavouriteListAdapter(object : AdapterClickListener {
             override fun selectData(data: Results) {
-
             }
-
             override fun selectFavouriteData(data: GameDetailBase) {
                 val intent = Intent(requireContext(),DetailActivity::class.java)
                 intent.putExtra("id",data.gameId.toString())
@@ -56,6 +54,7 @@ class FavouriteFragment : Fragment() {
         binding.favouriteRv.layoutManager = LinearLayoutManager(requireContext())
         binding.favouriteRv.adapter = adapter
     }
+
 
     private fun observeData() {
         viewModel.favouriteGames.observe(viewLifecycleOwner, Observer {response->

@@ -31,19 +31,16 @@ class FavouriteListAdapter(var itemClickListener: AdapterClickListener) : Recycl
             itemView.setOnClickListener {
                 itemClickListener.selectFavouriteData(data)
             }
-
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyHolder {
         binding = RecyclerItemGamesBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         return MyHolder(binding)
-
     }
 
     override fun onBindViewHolder(holder: MyHolder, position: Int) {
         holder.bind(filterList[position])
-
     }
 
     override fun getItemCount(): Int {

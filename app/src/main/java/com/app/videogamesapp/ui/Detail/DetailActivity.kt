@@ -36,6 +36,7 @@ class DetailActivity : AppCompatActivity() {
         binding.likeButton.clickListener {
             binding.likeButton.playAnimation()
             detailResult?.let {
+                println("Eklenen Data --> ${it}")
                 viewModel.insert(it)
             }
         }

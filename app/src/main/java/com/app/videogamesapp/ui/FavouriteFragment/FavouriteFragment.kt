@@ -57,8 +57,9 @@ class FavouriteFragment : Fragment() {
 
 
     private fun observeData() {
-        viewModel.favouriteGames.observe(viewLifecycleOwner, Observer {response->
+        viewModel.favouriteGames.observe(viewLifecycleOwner, Observer { response ->
             response?.let {
+                println("Gelen Favori -- ${it}")
                 adapter.setList(response as ArrayList<GameDetailBase>)
             }
         })

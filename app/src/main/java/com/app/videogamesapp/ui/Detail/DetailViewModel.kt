@@ -43,7 +43,7 @@ class DetailViewModel(application: Application):AndroidViewModel(application) {
 
 
     fun insert(game: GameDetailBase){
-        viewModelScope.async {
+        GlobalScope.async {
             gameDao!!.insert(game)
         }
     }

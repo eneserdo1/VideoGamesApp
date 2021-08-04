@@ -7,6 +7,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import coil.load
 import com.app.videogamesapp.R
+import com.app.videogamesapp.data.remote.RemoteDataSource
 import com.app.videogamesapp.databinding.ActivityDetailBinding
 import com.app.videogamesapp.model.GameDetailBase
 import com.app.videogamesapp.model.Results
@@ -17,6 +18,8 @@ import com.app.videogamesapp.utils.visibleAlpha
 class DetailActivity : AppCompatActivity() {
     private lateinit var binding : ActivityDetailBinding
     private lateinit var viewModel : DetailViewModel
+    private lateinit var dataSource : RemoteDataSource
+
     var id : String?=null
     var detailResult:GameDetailBase?=null
 
@@ -26,7 +29,7 @@ class DetailActivity : AppCompatActivity() {
         setContentView(binding.root)
         viewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
         id = intent.getStringExtra("id")
-
+        dataSource = RemoteDataSource()
         observeData()
         buttonsListener()
 
@@ -74,7 +77,7 @@ class DetailActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         id?.let {
-            viewModel.fetchData(it)
+            viewModel.fetchData(it,dataSource)
         }
     }
 }

@@ -14,6 +14,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager.widget.ViewPager
+import com.app.videogamesapp.data.remote.RemoteDataSource
 import com.app.videogamesapp.databinding.FragmentHomeBinding
 import com.app.videogamesapp.model.GameDetailBase
 import com.app.videogamesapp.model.Results
@@ -29,6 +30,7 @@ class HomeFragment : Fragment() {
     private lateinit var binding : FragmentHomeBinding
     private lateinit var viewModel: HomeFragmentViewModel
     private lateinit var adapter : GameListAdapter
+    private lateinit var dataSource: RemoteDataSource
     private var viewPagerList : ArrayList<Results> = arrayListOf()
     private var searchState : Boolean = false
 
@@ -43,7 +45,7 @@ class HomeFragment : Fragment() {
 
         binding = FragmentHomeBinding.inflate(inflater,container,false)
         viewModel = ViewModelProvider(this).get(HomeFragmentViewModel::class.java)
-
+        dataSource = RemoteDataSource()
         initRecyclerview()
         observeData()
         searchviewListener()
@@ -139,7 +141,7 @@ class HomeFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        viewModel.getAllList()
+        viewModel.getAllList(dataSource)
     }
 
     private fun initPager() {

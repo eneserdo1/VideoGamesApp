@@ -1,4 +1,4 @@
-package com.app.videogamesapp.data
+package com.app.videogamesapp.network
 
 import com.app.videogamesapp.utils.Constants.Companion.baseUrl
 import okhttp3.OkHttpClient
